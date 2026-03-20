@@ -68,7 +68,8 @@ def validate(model, loader, criterion, device, metrics):
         inputs = inputs.to(device, non_blocking=True)
         targets = targets.to(device, non_blocking=True)
         
-        with autocast(enabled=True):
+        device_type = 'cuda' if device.type == 'cuda' else 'cpu'
+        with autocast(device_type=device_type, enabled=(device_type == 'cuda')):
             outputs = model(inputs)
             loss = criterion(outputs, targets)
             

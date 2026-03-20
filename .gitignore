@@ -4,10 +4,5 @@ venv/
 __pycache__/
 *.pyc
 
-outputs/checkpoints/*
-!outputs/checkpoints/.gitkeep
-
-outputs/logs/*
-!outputs/logs/.gitkeep
 
 *.pyc
