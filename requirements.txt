@@ -1,0 +1,12 @@
+torch>=2.0.0
+torchvision
+torchaudio
+nuscenes-devkit
+opencv-python
+albumentations
+tqdm
+matplotlib
+numpy
+pandas
+scikit-learn
+tensorboard

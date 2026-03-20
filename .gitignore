@@ -1,0 +1,13 @@
+v1.0-mini/
+dataset/
+venv/
+__pycache__/
+*.pyc
+
+outputs/checkpoints/*
+!outputs/checkpoints/.gitkeep
+
+outputs/logs/*
+!outputs/logs/.gitkeep
+
+*.pyc
