@@ -3,7 +3,7 @@ import numpy as np
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 
-def get_train_transforms(img_size=(256, 512)):
+def get_train_transforms(img_size=(512, 512)):
     """
     Advanced Multi-Modal Augmentation Pipeline for Real-time Segmentation.
     Using Albumentations to ensure geometric consistency across RGB, Mask, Depth, and Height.
@@ -40,7 +40,7 @@ def get_train_transforms(img_size=(256, 512)):
         'height': 'mask'
     })
 
-def get_val_transforms(img_size=(256, 512)):
+def get_val_transforms(img_size=(512, 512)):
     """
     Validation/Test pipeline: Just resize and normalize.
     """

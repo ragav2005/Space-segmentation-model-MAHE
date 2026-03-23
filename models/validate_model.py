@@ -1,6 +1,6 @@
 import torch
 import time
-from models.shufflenet_seg import ShuffleNetSegmentation
+from models.mobilenet_deeplab import DeepLabV3Plus
 from models.losses import CombinedLoss
 
 def count_parameters(model):
@@ -12,13 +12,13 @@ def test_model():
     print(f"Testing on Device: {device}")
     
     # 1. Create Model
-    model = ShuffleNetSegmentation(in_channels=5, num_classes=2).to(device)
+    model = DeepLabV3Plus(in_channels=5, num_classes=2).to(device)
     params = count_parameters(model)
     print(f"Total Model Parameters: {params:,} (Target: ~3-5M for Real-Time)")
     
-    # 2. Dummy Multi-Modal Input (B, 5, H, W) -> e.g., 256x512
+    # 2. Dummy Multi-Modal Input (B, 5, H, W) -> e.g., 512x512
     batch_size = 2 # RTX 3050 friendly test batch
-    H, W = 256, 512
+    H, W = 512, 512
     dummy_input = torch.randn(batch_size, 5, H, W).to(device)
     
     print(f"Input Shape: {dummy_input.shape} (RGB + D + H)")

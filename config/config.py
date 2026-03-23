@@ -16,7 +16,7 @@ CAMERAS = [
 LIDAR_SENSOR = 'LIDAR_TOP'
 
 # Image Parameters
-IMG_SIZE = (256, 512) # (height, width) for fast inference
+IMG_SIZE = (512, 512) # (height, width) for  DeepLab-Lite setup
 IN_CHANNELS = 5  # RGB(3) + Depth(1) + Height(1)
 NUM_CLASSES = 2  # Drivable vs Non-drivable
 
@@ -29,7 +29,7 @@ LIDAR_DENSIFICATION = True # Apply optimal depth densification
 DILATION_KERNEL_SIZE = 5   # Kernel size for depth filling
 
 
-BATCH_SIZE = 12  # Reduced from 16 due to 5-channel input block in VRAM
+BATCH_SIZE = 8  # Reduced for 512x512 multi-modal input processing
 NUM_WORKERS = 6  # Best IO handling for 6-core/12-thread 
 PREFETCH_FACTOR = 2
 PIN_MEMORY = True

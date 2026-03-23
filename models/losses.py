@@ -62,9 +62,9 @@ class DiceLoss(nn.Module):
 class CombinedLoss(nn.Module):
     """
     OHEM + Dice combination for robust segmentation.
-    Weights optimized for real-time drivable segmentations.
+    Weights optimized for DeepLabV3+ with heavy class imbalance.
     """
-    def __init__(self, weight_ohem=0.6, weight_dice=0.4):
+    def __init__(self, weight_ohem=0.7, weight_dice=0.3):
         super(CombinedLoss, self).__init__()
         self.weight_ohem = weight_ohem
         self.weight_dice = weight_dice

@@ -14,7 +14,7 @@ PROJECT_ROOT = Path(__file__).parent.parent.absolute()
 sys.path.append(str(PROJECT_ROOT))
 
 from config import config as cfg
-from models.shufflenet_seg import ShuffleNetSegmentation
+from models.mobilenet_deeplab import DeepLabV3Plus
 from models.losses import CombinedLoss
 from data.dataset import MultiModalDrivableDataset
 from data.augmentations import get_train_transforms, get_val_transforms
@@ -82,6 +82,12 @@ def validate(model, loader, criterion, device, metrics):
 
 def main():
     print("Initializing Multi-Modal Training Pipeline ")
+
+    # Runtime controls via environment variables (no code edits needed per run)
+    save_every_epochs = int(os.getenv('SAVE_EVERY_EPOCHS', '5'))
+    early_stop_patience = int(os.getenv('EARLY_STOP_PATIENCE', '20'))
+    early_stop_min_delta = float(os.getenv('EARLY_STOP_MIN_DELTA', '0.05'))
+    early_stop_min_epochs = int(os.getenv('EARLY_STOP_MIN_EPOCHS', '15'))
     
     # Check Hardware (Handling CPU gracefully for now before GPU migration)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
@@ -100,7 +106,7 @@ def main():
         cfg.DATASET_DIR, val_split, cfg.CAMERAS, transform=get_val_transforms(cfg.IMG_SIZE)
     )
     
-    # DataLoaders designed for RTX 3050 Memory Constraints
+    
     train_loader = DataLoader(
         train_dataset, batch_size=cfg.BATCH_SIZE, shuffle=True,
         num_workers=cfg.NUM_WORKERS if device.type == 'cuda' else 0, # Disable workers on CPU to avoid crashes
@@ -116,7 +122,7 @@ def main():
     )
     
     # Model Initialization
-    model = ShuffleNetSegmentation(in_channels=cfg.IN_CHANNELS, num_classes=cfg.NUM_CLASSES)
+    model = DeepLabV3Plus(in_channels=cfg.IN_CHANNELS, num_classes=cfg.NUM_CLASSES)
     model = model.to(device)
     
     # Advanced Loss & Optimization
@@ -136,7 +142,12 @@ def main():
     logger = AdvancedTrainingLogger(log_dir=cfg.LOG_DIR)
     
     best_miou = 0.0
+    epochs_without_improve = 0
     print(f"Starting Training for {cfg.EPOCHS} Epochs...\n")
+    print(
+        f"Controls: save_every={save_every_epochs}, early_stop_patience={early_stop_patience}, "
+        f"min_delta={early_stop_min_delta}, min_epochs={early_stop_min_epochs}"
+    )
     
     try:
         for epoch in range(1, cfg.EPOCHS + 1):
@@ -163,18 +174,42 @@ def main():
             print(f"Train Loss: {train_loss:.4f} | Train mIoU: {train_metrics['mIoU']:.2f}% | Drivable IoU: {train_metrics['Drivable_IoU']:.2f}%")
             print(f"Val Loss:   {val_loss:.4f} | Val mIoU: {val_metrics['mIoU']:.2f}%   | Drivable IoU: {val_metrics['Drivable_IoU']:.2f}%")
             print(f"Current LR: {current_lr:.6f}{stability_warn}\n")
-            
-            # Save Best Model Checkpoint
-            if val_metrics['mIoU'] > best_miou:
-                best_miou = val_metrics['mIoU']
-                save_path = cfg.CHECKPOINT_DIR / 'best_shufflenet_multimodal.pth'
+
+            # Save periodic checkpoint for recovery and intermediate benchmarking
+            if save_every_epochs > 0 and epoch % save_every_epochs == 0:
+                periodic_path = cfg.CHECKPOINT_DIR / f'deeplabv3plus_epoch_{epoch:03d}.pth'
                 torch.save({
                     'epoch': epoch,
                     'model_state_dict': model.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
+                    'scheduler_state_dict': scheduler.state_dict(),
+                    'best_miou': best_miou,
+                }, periodic_path)
+                print(f" Periodic checkpoint saved: {periodic_path}")
+            
+            # Save Best Model Checkpoint
+            current_miou = val_metrics['mIoU']
+            if current_miou > (best_miou + early_stop_min_delta):
+                best_miou = val_metrics['mIoU']
+                epochs_without_improve = 0
+                save_path = cfg.CHECKPOINT_DIR / 'best_deeplabv3plus_multimodal.pth'
+                torch.save({
+                    'epoch': epoch,
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'scheduler_state_dict': scheduler.state_dict(),
                     'best_miou': best_miou,
                 }, save_path)
                 print(f" New Best mIoU! Weights saved to {save_path} \n")
+            else:
+                epochs_without_improve += 1
+
+            if epoch >= early_stop_min_epochs and epochs_without_improve >= early_stop_patience:
+                print(
+                    f"Early stopping triggered at epoch {epoch}. "
+                    f"No mIoU improvement > {early_stop_min_delta} for {early_stop_patience} epochs."
+                )
+                break
     finally:
         logger.close()
 

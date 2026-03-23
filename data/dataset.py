@@ -1,9 +1,10 @@
-import os
 import cv2
 import numpy as np
 import torch
 from pathlib import Path
-from torch.utils.data import Dataset, DataLoader
+from torch.utils.data import Dataset
+
+from config import config
 
 class MultiModalDrivableDataset(Dataset):
     """
@@ -47,12 +48,23 @@ class MultiModalDrivableDataset(Dataset):
         return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         
     def read_grayscale_float(self, path):
-        img = cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)
+        img = cv2.imread(str(path), cv2.IMREAD_UNCHANGED)
         if img is None:
             # Fallback to zero-matrix if depth/height packet dropped in specific view
-            return np.zeros((256, 512), dtype=np.float32)
-        # Assuming preprocessing saved as uint8 grayscale scaled 0-255. Convert back to normalized float 0-1
-        return img.astype(np.float32) / 255.0
+            return np.zeros((config.IMG_SIZE[0], config.IMG_SIZE[1]), dtype=np.float32)
+
+        if img.ndim == 3:
+            img = img[:, :, 0]
+
+        if img.dtype == np.uint16:
+            return img.astype(np.float32) / 65535.0
+        if img.dtype == np.uint8:
+            return img.astype(np.float32) / 255.0
+
+        max_val = float(np.max(img))
+        if max_val <= 0.0:
+            return np.zeros_like(img, dtype=np.float32)
+        return np.clip(img.astype(np.float32) / max_val, 0.0, 1.0)
 
     def read_mask(self, path):
         mask = cv2.imread(str(path), cv2.IMREAD_GRAYSCALE)
@@ -95,6 +107,14 @@ class MultiModalDrivableDataset(Dataset):
                 depth_aug = torch.from_numpy(depth_aug).float()
                 height_aug = torch.from_numpy(height_aug).float()
                 mask_aug = torch.from_numpy(mask_aug).long()
+            else:
+                depth_aug = depth_aug.float()
+                height_aug = height_aug.float()
+
+            if depth_aug.max() > 1.0:
+                depth_aug = depth_aug / 65535.0
+            if height_aug.max() > 1.0:
+                height_aug = height_aug / 65535.0
             
             # Expand dims for concatenation (H,W) -> (1, H, W)
             depth_aug = depth_aug.unsqueeze(0).float()

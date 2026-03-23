@@ -45,6 +45,8 @@ def validate_dataloader():
     print(f"Single Sample Retrieval: {get_time*1000:.2f} ms")
     print(f"Input Shape: {fused_input.shape} (Expected: [5, {IMG_SIZE[0]}, {IMG_SIZE[1]}])")
     print(f"Mask Shape: {mask.shape} (Expected: [{IMG_SIZE[0]}, {IMG_SIZE[1]}])")
+    print(f"Input Range: min={fused_input.min().item():.4f}, max={fused_input.max().item():.4f}")
+    print(f"Mask Unique: {torch.unique(mask).tolist()}")
     
     assert fused_input.shape[0] == 5, " Fused input doesn't have 5 channels!"
     print(" Shape validation passed!")
@@ -71,6 +73,7 @@ def validate_dataloader():
         # Test dtype consistency
         assert batch_inputs.dtype == torch.float32, "Inputs should be float32"
         assert batch_masks.dtype == torch.int64, "Masks should be int64 (long) for cross entropy"
+        assert batch_inputs.shape[1] == 5, "Batch input must contain 5 channels"
         print("Dtype validation passed!")
         print("DataLoader behaves correctly!")
         break # Only test one batch
