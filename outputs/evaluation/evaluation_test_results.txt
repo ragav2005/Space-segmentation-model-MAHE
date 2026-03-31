@@ -1,0 +1,37 @@
+ EVALUATION METRICS REPORT
+================================================================================
+
+Split: test
+Checkpoint: outputs/checkpoints/best_model.pth
+Device: cpu
+
+1. PIXEL ACCURACY (Overall Accuracy)
+   86.19%
+
+2. PER-CLASS METRICS
+
+   Class 0:
+     Precision: 95.63%
+     Recall:    85.50%
+     F1 Score:  90.28%
+     IoU:       82.29%
+
+   Class 1:
+     Precision: 66.97%
+     Recall:    88.28%
+     F1 Score:  76.17%
+     IoU:       61.51%
+
+3. MACRO AVERAGES
+   Precision: 81.30%
+   Recall:    86.89%
+   F1 Score:  83.22%
+
+4. MICRO AVERAGES
+   Precision: 86.19%
+   Recall:    86.19%
+   F1 Score:  86.19%
+
+5. SUMMARY METRICS
+   mIoU (Mean IoU):        71.90%
+   mAP (Mean Avg Prec):    71.90%
