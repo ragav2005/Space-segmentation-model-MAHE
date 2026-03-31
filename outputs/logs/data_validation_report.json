@@ -1,0 +1,59 @@
+{
+  "summary": {
+    "total_images": 2424,
+    "total_masks": 2424,
+    "paired_samples": 2424,
+    "missing_images_for_masks": 0,
+    "missing_masks_for_images": 0,
+    "total_token_groups": 404
+  },
+  "split_counts": {
+    "tokens": {
+      "train": 323,
+      "val": 40,
+      "test": 41
+    },
+    "pairs": {
+      "train": 1938,
+      "val": 240,
+      "test": 246
+    },
+    "pairs_written": {
+      "train": 1938,
+      "val": 240,
+      "test": 246
+    }
+  },
+  "leakage": {
+    "has_leakage": false,
+    "leakage_count": 0,
+    "examples": []
+  },
+  "quality": {
+    "train": {
+      "unreadable_images": 0,
+      "unreadable_masks": 0,
+      "shape_mismatch": 0,
+      "empty_masks": 49,
+      "empty_mask_ratio": 0.025283797729618165
+    },
+    "val": {
+      "unreadable_images": 0,
+      "unreadable_masks": 0,
+      "shape_mismatch": 0,
+      "empty_masks": 0,
+      "empty_mask_ratio": 0.0
+    },
+    "test": {
+      "unreadable_images": 0,
+      "unreadable_masks": 0,
+      "shape_mismatch": 0,
+      "empty_masks": 11,
+      "empty_mask_ratio": 0.044715447154471545
+    }
+  },
+  "examples": {
+    "missing_images_for_masks": [],
+    "missing_masks_for_images": []
+  }
+}

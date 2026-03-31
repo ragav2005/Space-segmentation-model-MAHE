@@ -1,0 +1,338 @@
+{
+  "phase": "phase_2_augmentation_visualization",
+  "timestamp": "2026-03-28T11:32:20.614692",
+  "stats": {
+    "num_samples": 20,
+    "mean_original_coverage": 0.21912618046626448,
+    "mean_augmented_coverage": 0.20632990488084033,
+    "mean_alignment_score": 1.0,
+    "total_issues": 1
+  },
+  "per_sample": [
+    {
+      "sample_id": "00889f8a9549_CAM_BACK",
+      "original_coverage": 0.12452392280101776,
+      "augmented_coverages": [
+        0.11548665165901184,
+        0.12452392280101776,
+        0.12452392280101776,
+        0.11080322414636612
+      ],
+      "coverage_range": [
+        0.11080322414636612,
+        0.12452392280101776
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "00889f8a9549_CAM_BACK_LEFT",
+      "original_coverage": 0.05043131485581398,
+      "augmented_coverages": [
+        0.04503580555319786,
+        0.04532063752412796,
+        0.03708089143037796,
+        0.03270670399069786
+      ],
+      "coverage_range": [
+        0.03270670399069786,
+        0.04532063752412796
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "00889f8a9549_CAM_BACK_RIGHT",
+      "original_coverage": 0.18267822265625,
+      "augmented_coverages": [
+        0.14132486283779144,
+        0.18685708940029144,
+        0.18267822265625,
+        0.18305256962776184
+      ],
+      "coverage_range": [
+        0.14132486283779144,
+        0.18685708940029144
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "00889f8a9549_CAM_FRONT",
+      "original_coverage": 0.3347208797931671,
+      "augmented_coverages": [
+        0.3347208797931671,
+        0.3126668334007263,
+        0.3347208797931671,
+        0.26001790165901184
+      ],
+      "coverage_range": [
+        0.26001790165901184,
+        0.3347208797931671
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "00889f8a9549_CAM_FRONT_LEFT",
+      "original_coverage": 0.2919067442417145,
+      "augmented_coverages": [
+        0.2919067442417145,
+        0.26671549677848816,
+        0.2922932803630829,
+        0.2919067442417145
+      ],
+      "coverage_range": [
+        0.26671549677848816,
+        0.2922932803630829
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "00889f8a9549_CAM_FRONT_RIGHT",
+      "original_coverage": 0.2764241397380829,
+      "augmented_coverages": [
+        0.2764241397380829,
+        0.2764241397380829,
+        0.2764241397380829,
+        0.2764241397380829
+      ],
+      "coverage_range": [
+        0.2764241397380829,
+        0.2764241397380829
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "023c4df2d451_CAM_BACK",
+      "original_coverage": 0.30026447772979736,
+      "augmented_coverages": [
+        0.27196043729782104,
+        0.2833618223667145,
+        0.30026447772979736,
+        0.30026447772979736
+      ],
+      "coverage_range": [
+        0.27196043729782104,
+        0.30026447772979736
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "023c4df2d451_CAM_BACK_LEFT",
+      "original_coverage": 0.01989339105784893,
+      "augmented_coverages": [
+        0.01854247972369194,
+        0.01989339105784893,
+        0.013728841207921505,
+        0.01989339105784893
+      ],
+      "coverage_range": [
+        0.013728841207921505,
+        0.01989339105784893
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "023c4df2d451_CAM_BACK_RIGHT",
+      "original_coverage": 0.34164226055145264,
+      "augmented_coverages": [
+        0.2999633848667145,
+        0.32571208477020264,
+        0.34164226055145264,
+        0.3115071654319763
+      ],
+      "coverage_range": [
+        0.2999633848667145,
+        0.34164226055145264
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "023c4df2d451_CAM_FRONT",
+      "original_coverage": 0.3522176146507263,
+      "augmented_coverages": [
+        0.3522176146507263,
+        0.3128092586994171,
+        0.30569255352020264,
+        0.3522176146507263
+      ],
+      "coverage_range": [
+        0.30569255352020264,
+        0.3522176146507263
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "023c4df2d451_CAM_FRONT_LEFT",
+      "original_coverage": 0.03038330003619194,
+      "augmented_coverages": [
+        0.02328694611787796,
+        0.02380778081715107,
+        0.03038330003619194,
+        0.03038330003619194
+      ],
+      "coverage_range": [
+        0.02328694611787796,
+        0.03038330003619194
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "023c4df2d451_CAM_FRONT_RIGHT",
+      "original_coverage": 0.37725016474723816,
+      "augmented_coverages": [
+        0.3353678286075592,
+        0.3379313051700592,
+        0.32630616426467896,
+        0.33820801973342896
+      ],
+      "coverage_range": [
+        0.32630616426467896,
+        0.33820801973342896
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0307afa1ec7e_CAM_BACK",
+      "original_coverage": 0.17098794877529144,
+      "augmented_coverages": [
+        0.17098794877529144,
+        0.1765340119600296,
+        0.17098794877529144,
+        0.17098794877529144
+      ],
+      "coverage_range": [
+        0.17098794877529144,
+        0.1765340119600296
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0307afa1ec7e_CAM_BACK_LEFT",
+      "original_coverage": 0.2348429411649704,
+      "augmented_coverages": [
+        0.2348429411649704,
+        0.2348429411649704,
+        0.19615885615348816,
+        0.19320474565029144
+      ],
+      "coverage_range": [
+        0.19320474565029144,
+        0.2348429411649704
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0307afa1ec7e_CAM_BACK_RIGHT",
+      "original_coverage": 0.21889647841453552,
+      "augmented_coverages": [
+        0.21889647841453552,
+        0.21889647841453552,
+        0.21889647841453552,
+        0.21889647841453552
+      ],
+      "coverage_range": [
+        0.21889647841453552,
+        0.21889647841453552
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0307afa1ec7e_CAM_FRONT",
+      "original_coverage": 0.38505858182907104,
+      "augmented_coverages": [
+        0.36845701932907104,
+        0.326904296875,
+        0.3646484315395355,
+        0.32099202275276184
+      ],
+      "coverage_range": [
+        0.32099202275276184,
+        0.36845701932907104
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0307afa1ec7e_CAM_FRONT_LEFT",
+      "original_coverage": 0.30122071504592896,
+      "augmented_coverages": [
+        0.30122071504592896,
+        0.30122071504592896,
+        0.30122071504592896,
+        0.30122071504592896
+      ],
+      "coverage_range": [
+        0.30122071504592896,
+        0.30122071504592896
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0307afa1ec7e_CAM_FRONT_RIGHT",
+      "original_coverage": 0.26185303926467896,
+      "augmented_coverages": [
+        0.2216389924287796,
+        0.26185303926467896,
+        0.24838460981845856,
+        0.22418619692325592
+      ],
+      "coverage_range": [
+        0.2216389924287796,
+        0.26185303926467896
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0373e9d88866_CAM_BACK",
+      "original_coverage": 0.12732747197151184,
+      "augmented_coverages": [
+        0.1003214493393898,
+        0.10891520231962204,
+        0.12732747197151184,
+        0.10836181789636612
+      ],
+      "coverage_range": [
+        0.1003214493393898,
+        0.12732747197151184
+      ],
+      "alignment_score": 1.0,
+      "issues": []
+    },
+    {
+      "sample_id": "0373e9d88866_CAM_BACK_LEFT",
+      "original_coverage": 0.0,
+      "augmented_coverages": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "coverage_range": [
+        0.0,
+        0.0
+      ],
+      "alignment_score": 1.0,
+      "issues": [
+        "WARNING: All augmentations result in empty masks"
+      ]
+    }
+  ],
+  "all_issues": [
+    "WARNING: All augmentations result in empty masks"
+  ]
+}
